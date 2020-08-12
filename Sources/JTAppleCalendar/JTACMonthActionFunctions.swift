@@ -118,6 +118,7 @@ extension JTACMonthView {
                 !isAnimationEnabled {
                 self.scrollViewDidEndScrollingAnimation(self)
             }
+            self.isScrollInProgress = false
         }
     }
     

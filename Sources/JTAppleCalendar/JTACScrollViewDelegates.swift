@@ -178,10 +178,6 @@ extension JTACMonthView: UIScrollViewDelegate {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
             self.decelerationRate = UIScrollView.DecelerationRate(rawValue: self.decelerationRateMatchingScrollingMode)
         }
-        
-        DispatchQueue.main.async {
-            self.calendarDelegate?.scrollDidEndDecelerating(for: self)
-        }
     }
     
     /// Tells the delegate when a scrolling
@@ -206,6 +202,7 @@ extension JTACMonthView: UIScrollViewDelegate {
         visibleDates {[unowned self] dates in
             self.calendarDelegate?.calendar(self, didScrollToDateSegmentWith: dates)
         }
+        self.calendarDelegate?.scrollDidEndDecelerating(for: self)
     }
     
     /// Tells the delegate that a scroll occured
