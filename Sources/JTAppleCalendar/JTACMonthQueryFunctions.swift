@@ -261,22 +261,6 @@ extension JTACMonthView {
         return retval
     }
     
-    func pathsFromDates(_ dates: [Date]) -> [IndexPath] {
-        var returnPaths: [IndexPath] = []
-        for date in dates {
-            if calendar.startOfDay(for: date) >= startOfMonthCache! && calendar.startOfDay(for: date) <= endOfMonthCache! {
-                let periodApart = calendar.dateComponents([.month], from: startOfMonthCache, to: date)
-                let day = calendar.dateComponents([.day], from: date).day!
-                guard let monthSectionIndex = periodApart.month else { continue }
-                let currentMonthInfo = monthInfo[monthSectionIndex]
-                if let indexPath = currentMonthInfo.indexPath(forDay: day) {
-                    returnPaths.append(indexPath)
-                }
-            }
-        }
-        return returnPaths
-    }
-    
     func cellStateFromIndexPath(_ indexPath: IndexPath,
                                 withDateInfo info: (date: Date, owner: DateOwner)? = nil,
                                 cell: JTACDayCell? = nil,
