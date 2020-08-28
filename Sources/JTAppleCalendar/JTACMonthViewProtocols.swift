@@ -140,6 +140,9 @@ public protocol JTACMonthViewDelegate: class {
     
     /// Tells the delegate that a scroll occured
     func calendarDidScroll(_ calendar: JTACMonthView)
+
+    func scrollViewWillEndDragging(_ calendar: JTACMonthView)
+    func scrollViewWillBeginDragging(_ calendar: JTACMonthView)
     
     /// Called to retrieve the size to be used for the month headers
     func calendarSizeForMonths(_ calendar: JTACMonthView?) -> MonthSize?
@@ -175,6 +178,8 @@ public extension JTACMonthViewDelegate {
         return JTACMonthReusableView()
     }
     func calendarDidScroll(_ calendar: JTACMonthView) {}
+    func scrollViewWillEndDragging(_ calendar: JTACMonthView) {}
+    func scrollViewWillBeginDragging(_ calendar: JTACMonthView) {}
     func calendarSizeForMonths(_ calendar: JTACMonthView?) -> MonthSize? { return nil }
     func sizeOfDecorationView(indexPath: IndexPath) -> CGRect { return .zero }
     func scrollDidEndDecelerating(for calendar: JTACMonthView) {}

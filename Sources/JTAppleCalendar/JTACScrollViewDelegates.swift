@@ -31,6 +31,10 @@ extension JTACMonthView: UIScrollViewDelegate {
         scrollViewDidEndDecelerating(self)
     }
 
+    public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        self.calendarDelegate?.scrollViewWillBeginDragging(self)
+    }
+
     /// Tells the delegate when the user finishes scrolling the content.
     open func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         guard let theCurrentSection = currentSection() else { return }
@@ -177,6 +181,10 @@ extension JTACMonthView: UIScrollViewDelegate {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
             self.decelerationRate = UIScrollView.DecelerationRate(rawValue: self.decelerationRateMatchingScrollingMode)
+        }
+
+        DispatchQueue.main.async {
+            self.calendarDelegate?.scrollViewWillEndDragging(self)
         }
     }
     
